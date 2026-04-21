@@ -13,11 +13,11 @@ TODO: expand
 # Install Nix
 curl -fsSL https://install.determinate.systems/nix | sh -s -- install
 
-# Use librelane binary cache
+# Use librelane binary cache (will take forever to build otherwise)
 nix run nixpkgs#cachix -- use librelane
 
-# Enable GitHub Pages (workflow will fail otherwise)
-nix run nixpkgs#gh -- api -X POST repos/{owner}/{repo}/pages -f 'source[branch]=main'
+# Enable GitHub Pages with Actions deployment (docs workflow will fail otherwise)
+nix run nixpkgs#gh -- api -X POST repos/{owner}/{repo}/pages -f build_type=workflow
 
 # Start developing
 nix develop                             # Enter dev shell with all dependencies
