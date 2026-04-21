@@ -13,9 +13,9 @@ TOP_MODULE := $(shell grep 'top_module:' $(INFO_YAML) | sed 's/.*: *"\(.*\)"/\1/
 PROJECT_SOURCES := $(shell sed -n '/^  source_files:/,/^[^ ]/{ /^ *- /{ s/.*- *"\(.*\)"/\1/; p; }; }' $(INFO_YAML))
 
 # Derive PDK_ROOT from flake layout if not already set
-ifndef PDK_ROOT
-  $(error PDK_ROOT is not set)
-endif
+# ifndef PDK_ROOT
+#   $(error PDK_ROOT is not set)
+# endif
 
 # Gate-level netlist: use local copy if present, otherwise pull from hardening run
 GATE_LEVEL_NETLIST ?= $(PWD)/gate_level_netlist.v

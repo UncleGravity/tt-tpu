@@ -1,6 +1,6 @@
 ![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/test/badge.svg) ![](../../workflows/fpga/badge.svg)
 
-# Tiny Tapeout 1-Bit TPU (Nix)
+# Tiny Tapeout 1-Bit TPU
 
 Simple 1-Bit Systolic Array for learning purposes.
 
