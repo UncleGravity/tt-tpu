@@ -35,8 +35,9 @@
 
       devShells = forAllSystems (system:
         let
-          pkgs = nixpkgs.legacyPackages.${system};
-          python = pkgs.python3.withPackages (ps: [ ps.tkinter ]);
+          pkgs = nixpkgs.legacyPackages.${system}; # nixpkgs
+          llPkgs = librelane.legacyPackages.${system}; # get librelane pkgs
+          python = llPkgs.python3.withPackages (ps: [ ps.cocotb ]); # use librelane python
         in {
           default = pkgs.mkShell {
 
@@ -44,7 +45,6 @@
             # DEPENDENCIES
             inputsFrom = [ librelane.devShells.${system}.default ];
             buildInputs = [
-              # pkgs.librelane # included in librelane devshell
               pkgs.nextpnr
               pkgs.icestorm
               pkgs.pdk-ciel
@@ -54,8 +54,6 @@
               pkgs.cairosvg
 
               # Testing
-              # pkgs.iverilog # included in librelane devshell
-              # pkgs.gtkwave # included in librelane devshell
               pkgs.surfer
             ];
 
@@ -74,10 +72,7 @@
               if [ ! -d "$FLAKE_ROOT/tt/.venv" ]; then
                 echo "Installing tt-support-tools python dependencies..."
                 uv venv --project="$FLAKE_ROOT/tt" --python=${python} # Create venv
-                uv --project="$FLAKE_ROOT/tt" sync # Install python dependencies
-
-                echo "Installing testbench python dependencies..."
-                uv --project="$FLAKE_ROOT/tt" add librelane pytest cocotb
+                uv --project="$FLAKE_ROOT/tt" sync --python=${python} # Install python dependencies
               fi
               source "$FLAKE_ROOT/tt/.venv/bin/activate"
 
@@ -87,6 +82,10 @@
                 echo "Installing sky130A PDK..."
                 ciel enable --pdk-family sky130 8afc8346a57fe1ab7934ba5a6056ea8b43078e71
               fi
+
+              # Ensure Nix-managed Python packages are available in subshells
+              export PYTHONPATH="''${NIX_PYTHONPATH:-}''${PYTHONPATH:+:$PYTHONPATH}"
+
             '';
             # ------------------------------------------------------------------
           };
