@@ -30,6 +30,7 @@
           test   = mkDevApp pkgs "test"   "cd test && make -B";
           harden = mkDevApp pkgs "harden" "./tt/tt_tool.py --create-user-config && ./tt/tt_tool.py --harden --no-docker";
           fpga   = mkDevApp pkgs "fpga"   "./tt/tt_fpga.py harden";
+          check  = mkDevApp pkgs "check"   "./tt/tt_tool.py --check-docs";
         }
       );
 
