@@ -28,7 +28,7 @@
         let pkgs = nixpkgs.legacyPackages.${system};
         in {
           test   = mkDevApp pkgs "test"   "cd test && make -B";
-          harden = mkDevApp pkgs "harden" "./tt/tt_tool.py --harden --no-docker";
+          harden = mkDevApp pkgs "harden" "./tt/tt_tool.py --create-user-config && ./tt/tt_tool.py --harden --no-docker";
           fpga   = mkDevApp pkgs "fpga"   "./tt/tt_fpga.py harden";
         }
       );
@@ -77,7 +77,7 @@
                 uv --project="$FLAKE_ROOT/tt" sync # Install python dependencies
 
                 echo "Installing testbench python dependencies..."
-                uv --project="$FLAKE_ROOT/tt" add pytest cocotb
+                uv --project="$FLAKE_ROOT/tt" add librelane pytest cocotb
               fi
               source "$FLAKE_ROOT/tt/.venv/bin/activate"
 
