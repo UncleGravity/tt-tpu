@@ -27,8 +27,8 @@ module tb ();
   wire VGND = 1'b0;
 `endif
 
-  // Replace tt_um_example with your module name:
-  tt_um_example user_project (
+  // Must match the top_module name in info.yaml:
+  tt_um_unclegravity_tpu user_project (
 
       // Include power ports for the Gate Level test:
 `ifdef GL_TEST
