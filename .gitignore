@@ -8,9 +8,11 @@ tt_submission
 src/user_config.json
 src/_tt_fpga_top.v
 src/config_merged.json
-test/sim_build
-test/__pycache__/
+test/**/sim_build/
+__pycache__/
+.pytest_cache/
 test/results.xml
+test/unit/*.result.xml
 test/gate_level_netlist.v
 .venv/
 build/

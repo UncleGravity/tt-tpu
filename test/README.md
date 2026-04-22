@@ -1,12 +1,7 @@
-# Sample testbench for a Tiny Tapeout project
+# Tests
 
-This is a sample testbench for a Tiny Tapeout project. It uses [cocotb](https://docs.cocotb.org/en/stable/) to drive the DUT and check the outputs.
-See below to get started or for more information, check the [website](https://tinytapeout.com/hdl/testing/).
-
-## Setting up
-
-1. Edit [`../info.yaml`](../info.yaml) — `top_module` and `source_files` are read from there by the Makefile, so you don't edit them here.
-2. Edit [tb.v](tb.v) and replace `tt_um_example` with your module name.
+All tests use [cocotb](https://docs.cocotb.org/en/stable/) to drive the DUT and check the outputs.
+[More Info](https://tinytapeout.com/hdl/testing/).
 
 The Makefile requires `PDK_ROOT` to be set; the Nix devshell (`nix develop`) sets this automatically.
 
