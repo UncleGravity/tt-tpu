@@ -8,6 +8,9 @@ Simple 1-Bit Systolic Array for learning purposes.
 
 TODO: expand
 
+## 2D Preview
+![png](https://unclegravity.github.io/tt-tpu/gds_render.png)
+
 ## TLDR:
 ```sh
 # Install Nix
